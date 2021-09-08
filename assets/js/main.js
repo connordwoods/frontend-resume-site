@@ -1,3 +1,25 @@
+// GET API REQUEST
+async function get_visitors() {
+    // call post api request function
+    //await post_visitor();
+    try {
+        let response = await fetch('https://tojybadmkf.execute-api.us-east-1.amazonaws.com/test/visitor_count', {
+            method: 'GET',
+            headers: {
+                // x api key
+            }
+        });
+        let data = await response.json()
+        document.getElementById("visitors").innerHTML = data['count'] + " visits.";
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+get_visitors();
+
 /*
 	Read Only by HTML5 UP
 	html5up.net | @ajlkn

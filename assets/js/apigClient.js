@@ -83,21 +83,39 @@ apigClientFactory.newClient = function (config) {
     
     
     
-    apigClient.rootPost = function (params, body, additionalParams) {
+    apigClient.visitorCountGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
         
-        var rootPostRequest = {
-            verb: 'post'.toUpperCase(),
-            path: pathComponent + uritemplate('/').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+        var visitorCountGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/visitor_count').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
         
         
-        return apiGatewayClient.makeRequest(rootPostRequest, authType, additionalParams, config.apiKey);
+        return apiGatewayClient.makeRequest(visitorCountGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.visitorCountOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var visitorCountOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/visitor_count').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(visitorCountOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
 
